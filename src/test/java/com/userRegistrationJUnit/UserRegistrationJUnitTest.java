@@ -12,7 +12,7 @@ class UserRegistrationJUnitTest {
 	static void initiate() {
 		userRegistrationJUnit = new UserRegistrationJUnit();
 	}
-	
+	/*
 	//Test methods for first name
 	@Test
 	public void firstName_ifValid_shouldReturnValid() {
@@ -95,4 +95,26 @@ class UserRegistrationJUnitTest {
 		assertEquals("invalid", userRegistrationJUnit.validatePassword("Abc@12"));
 		assertEquals("invalid", userRegistrationJUnit.validatePassword("ab-abab254"));
 	}
+	*/
+	
+	@Test
+	public void userEntry_ifValid_shouldReturnHappy() {
+		String firstName = "Rohan";
+		String lastName = "Patil";
+		String mobile = "91 9865326598";
+		String email = "abc-100@yahoo.com";
+		String password = "abcNn@1234";
+		assertEquals("happy", userRegistrationJUnit.validateUserEntry(firstName, lastName, mobile, email, password));
+	}
+	
+	@Test
+	public void userEntry_ifInvalid_shouldReturnSad() {
+		String firstName = "rohan";
+		String lastName = "patil";
+		String mobile = "919865326598";
+		String email = "abc-100@yahoo.com.1";
+		String password = "abcNn1234";
+		assertEquals("sad", userRegistrationJUnit.validateUserEntry(firstName, lastName, mobile, email, password));
+	}
+	
 }
