@@ -52,4 +52,18 @@ class UserRegistrationJUnitTest {
 		assertEquals("invalid", userRegistrationJUnit.validateEmail("abc.xyz@bll.co.in"));
 		assertEquals("invalid", userRegistrationJUnit.validateEmail("ab.xyz@bl.com.in"));
 	}
+	
+	//Test methods for last name
+	@Test
+	public void mobile_ifValid_shouldReturnValid() {
+		assertEquals("valid", userRegistrationJUnit.validateMobile("91 9865326598"));
+		assertEquals("valid", userRegistrationJUnit.validateMobile("975 5487215487"));
+	}
+	
+	@Test
+	public void mobile_ifInvalid_shouldReturnInvalid() {
+		assertEquals("invalid", userRegistrationJUnit.validateMobile("919865326598"));
+		assertEquals("invalid", userRegistrationJUnit.validateMobile("91 986532659898"));
+	}
+	
 }
