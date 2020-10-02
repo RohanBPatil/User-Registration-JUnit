@@ -11,6 +11,11 @@ public class UserRegistrationJUnit {
 		return matchingWithPattern(firstName, firstNameRegex);
 	}
 	
+	//Validating last name
+	public String validateLastName(String lastName) {
+		String lastNameRegex = "^([A-Z]{1}[A-Za-z]{2,})$";
+		return matchingWithPattern(lastName, lastNameRegex);
+	}
 	
 	//matching patterns and returning valid or invalid
 	public String matchingWithPattern(String check, String regex) {
