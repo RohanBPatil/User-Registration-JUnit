@@ -16,13 +16,18 @@ public class UserRegistrationJUnit {
 		String lastNameRegex = "^([A-Z]{1}[A-Za-z]{2,})$";
 		return matchingWithPattern(lastName, lastNameRegex);
 	}
+	*/
 	
 	//validating email
 	public String validateEmail(String email) {
-		String emailRegex = "^[a-zA-Z0-9_]+[-+.]?[A-Za-z0-9_]+@[A-Za-z0-9]+[.][a-z]{2,}[.]?([a-z]{2,})?$";
-		return matchingWithPattern(email, emailRegex);
+		//String emailRegex = "^[a-zA-Z0-9_]+[-+.]?[A-Za-z0-9_]+@[A-Za-z0-9]+[.][a-z]{2,}[.]?([a-z]{2,})?$";
+		if(matchingWithPattern(email, EMAIL_REGEX))
+				return "valid";
+		else
+			return "invalid";
 	}
 	
+	/*
 	//validating mobile
 	public String validateMobile(String mobile) {
 		String mobileRegex = "^([0-9]{1,4}[ ][0-9]{10})$";
