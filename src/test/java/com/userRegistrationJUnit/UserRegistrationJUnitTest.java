@@ -66,4 +66,16 @@ class UserRegistrationJUnitTest {
 		assertEquals("invalid", userRegistrationJUnit.validateMobile("91 986532659898"));
 	}
 	
+	//Test methods for password
+	@Test
+	public void password_ifValid_shouldReturnValid() {
+		assertEquals("valid", userRegistrationJUnit.validatePassword("Abc@1234"));
+		assertEquals("valid", userRegistrationJUnit.validatePassword("ABc@#xyz"));
+	}
+	
+	@Test
+	public void password_ifInvalid_shouldReturnInvalid() {
+		assertEquals("invalid", userRegistrationJUnit.validatePassword("Abc@12"));
+		assertEquals("invalid", userRegistrationJUnit.validatePassword("ab-abab254"));
+	}
 }

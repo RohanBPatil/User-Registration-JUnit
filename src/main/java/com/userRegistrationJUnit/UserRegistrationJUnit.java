@@ -28,7 +28,13 @@ public class UserRegistrationJUnit {
 		String mobileRegex = "^([0-9]{1,4}[ ][0-9]{10})$";
 		return matchingWithPattern(mobile, mobileRegex);
 	}
-		
+	
+	//validating password
+	public String validatePassword(String password) {
+		String passwordRegex = "^([A-Za-z0-9@#$%^&*]{8,})$";
+		return matchingWithPattern(password, passwordRegex);
+	}
+	
 	//matching patterns and returning valid or invalid
 	public String matchingWithPattern(String check, String regex) {
 		Pattern pattern = Pattern.compile(regex);
