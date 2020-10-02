@@ -31,7 +31,7 @@ public class UserRegistrationJUnit {
 	
 	//validating password
 	public String validatePassword(String password) {
-		String passwordRegex = "^((?=.*[A-Z]+)(?=.*[0-9]+)([A-Za-z0-9@#$%^&*]{8,}))$";
+		String passwordRegex = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[$#@!%_&])[A-Za-z0-9$#@!%_&]{8,}$";
 		return matchingWithPattern(password, passwordRegex);
 	}
 	

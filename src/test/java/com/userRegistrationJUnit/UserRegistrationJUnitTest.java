@@ -69,8 +69,8 @@ class UserRegistrationJUnitTest {
 	//Test methods for password
 	@Test
 	public void password_ifValid_shouldReturnValid() {
-		assertEquals("valid", userRegistrationJUnit.validatePassword("Abc@1234"));
-		assertEquals("valid", userRegistrationJUnit.validatePassword("ABc@#xyz5"));
+		assertEquals("valid", userRegistrationJUnit.validatePassword("abcNn@1234"));
+		assertEquals("valid", userRegistrationJUnit.validatePassword("ABcn_xyz5"));
 	}
 	
 	@Test
