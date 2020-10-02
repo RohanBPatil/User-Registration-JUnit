@@ -19,7 +19,7 @@ public class UserRegistrationJUnit {
 	
 	//validating email
 	public String validateEmail(String email) {
-		String emailRegex = "^(abc[.][A-Za-z]+@bl[.]co[.][A-Za-z]{2,})$";
+		String emailRegex = "^[a-zA-Z0-9_]+[-+.]?[A-Za-z0-9_]+@[A-Za-z0-9]+[.][a-z]{2,}[.]?([a-z]{2,})?$";
 		return matchingWithPattern(email, emailRegex);
 	}
 	

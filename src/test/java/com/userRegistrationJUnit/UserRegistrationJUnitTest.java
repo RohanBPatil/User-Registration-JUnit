@@ -42,18 +42,35 @@ class UserRegistrationJUnitTest {
 	//Test methods for email
 	@Test
 	public void email_ifValid_shouldReturnValid() {
-		assertEquals("valid", userRegistrationJUnit.validateEmail("abc.xyz@bl.co.in"));
-		assertEquals("valid", userRegistrationJUnit.validateEmail("abc.rohan@bl.co.uk"));
+		assertEquals("valid", userRegistrationJUnit.validateEmail("abc@yahoo.com"));
+		assertEquals("valid", userRegistrationJUnit.validateEmail("abc-100@yahoo.com"));
+		assertEquals("valid", userRegistrationJUnit.validateEmail("abc.100@yahoo.com"));
+		assertEquals("valid", userRegistrationJUnit.validateEmail("abc111@abc.com"));
+		assertEquals("valid", userRegistrationJUnit.validateEmail("abc-100@abc.net"));
+		assertEquals("valid", userRegistrationJUnit.validateEmail("abc.100@abc.com.au"));
+		assertEquals("valid", userRegistrationJUnit.validateEmail("abc@1.com"));
+		assertEquals("valid", userRegistrationJUnit.validateEmail("abc@gmail.com.com"));
+		assertEquals("valid", userRegistrationJUnit.validateEmail("abc+100@gmail.com"));
 	}
 	
 	@Test
 	public void email_ifInvalid_shouldReturnInvalid() {
-		assertEquals("invalid", userRegistrationJUnit.validateEmail("ab.xyz@@bl.co.in"));
-		assertEquals("invalid", userRegistrationJUnit.validateEmail("abc.xyz@bll.co.in"));
-		assertEquals("invalid", userRegistrationJUnit.validateEmail("ab.xyz@bl.com.in"));
+		assertEquals("invalid", userRegistrationJUnit.validateEmail("abc"));
+		assertEquals("invalid", userRegistrationJUnit.validateEmail("abc@.com.my"));
+		assertEquals("invalid", userRegistrationJUnit.validateEmail("abc123@gmail.a"));
+		assertEquals("invalid", userRegistrationJUnit.validateEmail("abc123@.com"));
+		assertEquals("invalid", userRegistrationJUnit.validateEmail("abc123@.com.com"));
+		assertEquals("invalid", userRegistrationJUnit.validateEmail(".abc@abc.com"));
+		assertEquals("invalid", userRegistrationJUnit.validateEmail("abc()*.com"));
+		assertEquals("invalid", userRegistrationJUnit.validateEmail("abc@%*.com"));
+		assertEquals("invalid", userRegistrationJUnit.validateEmail("abc..2002@gmail.com"));
+		assertEquals("invalid", userRegistrationJUnit.validateEmail("abc.@gmail.com"));
+		assertEquals("invalid", userRegistrationJUnit.validateEmail("abc@abc@gmail.com"));
+		assertEquals("invalid", userRegistrationJUnit.validateEmail("abc@gmail.com.1a"));
+		assertEquals("invalid", userRegistrationJUnit.validateEmail("abc@gmail.com.aa.au"));
 	}
 	
-	//Test methods for last name
+	//Test methods for mobile
 	@Test
 	public void mobile_ifValid_shouldReturnValid() {
 		assertEquals("valid", userRegistrationJUnit.validateMobile("91 9865326598"));
