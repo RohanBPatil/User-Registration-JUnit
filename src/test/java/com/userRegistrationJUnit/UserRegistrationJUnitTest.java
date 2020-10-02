@@ -70,7 +70,7 @@ class UserRegistrationJUnitTest {
 	@Test
 	public void password_ifValid_shouldReturnValid() {
 		assertEquals("valid", userRegistrationJUnit.validatePassword("Abc@1234"));
-		assertEquals("valid", userRegistrationJUnit.validatePassword("ABc@#xyz"));
+		assertEquals("valid", userRegistrationJUnit.validatePassword("ABc@#xyz5"));
 	}
 	
 	@Test
