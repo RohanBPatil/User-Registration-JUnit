@@ -17,6 +17,12 @@ public class UserRegistrationJUnit {
 		return matchingWithPattern(lastName, lastNameRegex);
 	}
 	
+	//validating email
+		public String validateEmail(String email) {
+			String emailRegex = "^(abc[.][A-Za-z]+@bl[.]co[.][A-Za-z]{2,})$";
+			return matchingWithPattern(email, emailRegex);
+		}
+	
 	//matching patterns and returning valid or invalid
 	public String matchingWithPattern(String check, String regex) {
 		Pattern pattern = Pattern.compile(regex);
