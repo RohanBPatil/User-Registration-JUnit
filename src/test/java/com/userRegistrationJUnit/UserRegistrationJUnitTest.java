@@ -14,126 +14,114 @@ class UserRegistrationJUnitTest {
 	static void initiate() {
 		userRegistrationJUnit = new UserRegistrationJUnit();
 	}
-	/*
+
 	//Test methods for first name
-	@Test
-	public void firstName_ifValid_shouldReturnValid() {
-		assertEquals("valid", userRegistrationJUnit.validateFirstName("Rohan"));
-		assertEquals("valid", userRegistrationJUnit.validateFirstName("Ram"));
+	@ParameterizedTest
+	@ValueSource(strings = {"Rohan", "Rohit", "Abhishek", "Rushikesh"})
+	public void firstName_ifValid_shouldReturnValid(String validFirstNames) {
+		try {
+			assertEquals("valid", userRegistrationJUnit.validateFirstName(validFirstNames));
+		}
+		catch(InvalidUserDetailsException exception) {
+			System.out.println(exception);
+		}
 	}
 	
-	@Test
-	public void firstName_ifInvalid_shouldReturnInvalid() {
-		assertEquals("invalid", userRegistrationJUnit.validateFirstName("rohan"));
-		assertEquals("invalid", userRegistrationJUnit.validateFirstName("Rohan20"));
+	@ParameterizedTest
+	@ValueSource(strings = {"rohan", "R5ohit", "A@bhishek", "Rushi.kesh"})
+	public void firstName_ifInvalid_shouldReturnInvalid(String invalidFirstNames) {
+		InvalidUserDetailsException exception = assertThrows(InvalidUserDetailsException.class, () -> {	
+			userRegistrationJUnit.validateFirstName(invalidFirstNames);
+		});
+		System.out.println(exception);
 	}
 	
 	//Test methods for last name
-	@Test
-	public void lastName_ifValid_shouldReturnValid() {
-		assertEquals("valid", userRegistrationJUnit.validateLastName("Patil"));
-		assertEquals("valid", userRegistrationJUnit.validateLastName("Jadhav"));
+	@ParameterizedTest
+	@ValueSource(strings = {"Patil", "Jadhav", "Sawant", "Deshmukh"})
+	public void lastName_ifValid_shouldReturnValid(String validLastNames) {
+		try {
+			assertEquals("valid", userRegistrationJUnit.validateLastName(validLastNames));
+		}
+		catch(InvalidUserDetailsException exception) {
+			System.out.println(exception);
+		}
 	}
 	
-	@Test
-	public void lastName_ifInvalid_shouldReturnInvalid() {
-		assertEquals("invalid", userRegistrationJUnit.validateLastName("patil"));
-		assertEquals("invalid", userRegistrationJUnit.validateLastName("Patil@"));
-	}
-	
-	//Test methods for email
-	@Test
-	public void email_ifValid_shouldReturnValid() {
-		assertEquals("valid", userRegistrationJUnit.validateEmail("abc@yahoo.com"));
-		assertEquals("valid", userRegistrationJUnit.validateEmail("abc-100@yahoo.com"));
-		assertEquals("valid", userRegistrationJUnit.validateEmail("abc.100@yahoo.com"));
-		assertEquals("valid", userRegistrationJUnit.validateEmail("abc111@abc.com"));
-		assertEquals("valid", userRegistrationJUnit.validateEmail("abc-100@abc.net"));
-		assertEquals("valid", userRegistrationJUnit.validateEmail("abc.100@abc.com.au"));
-		assertEquals("valid", userRegistrationJUnit.validateEmail("abc@1.com"));
-		assertEquals("valid", userRegistrationJUnit.validateEmail("abc@gmail.com.com"));
-		assertEquals("valid", userRegistrationJUnit.validateEmail("abc+100@gmail.com"));
-	}
-	
-	@Test
-	public void email_ifInvalid_shouldReturnInvalid() {
-		assertEquals("invalid", userRegistrationJUnit.validateEmail("abc"));
-		assertEquals("invalid", userRegistrationJUnit.validateEmail("abc@.com.my"));
-		assertEquals("invalid", userRegistrationJUnit.validateEmail("abc123@gmail.a"));
-		assertEquals("invalid", userRegistrationJUnit.validateEmail("abc123@.com"));
-		assertEquals("invalid", userRegistrationJUnit.validateEmail("abc123@.com.com"));
-		assertEquals("invalid", userRegistrationJUnit.validateEmail(".abc@abc.com"));
-		assertEquals("invalid", userRegistrationJUnit.validateEmail("abc()*.com"));
-		assertEquals("invalid", userRegistrationJUnit.validateEmail("abc@%*.com"));
-		assertEquals("invalid", userRegistrationJUnit.validateEmail("abc..2002@gmail.com"));
-		assertEquals("invalid", userRegistrationJUnit.validateEmail("abc.@gmail.com"));
-		assertEquals("invalid", userRegistrationJUnit.validateEmail("abc@abc@gmail.com"));
-		assertEquals("invalid", userRegistrationJUnit.validateEmail("abc@gmail.com.1a"));
-		assertEquals("invalid", userRegistrationJUnit.validateEmail("abc@gmail.com.aa.au"));
+	@ParameterizedTest
+	@ValueSource(strings = {"Pa_til", "Ja1dhav", "Sawant*", "De"})
+	public void lastName_ifInvalid_shouldReturnInvalid(String invalidLastNames) {
+		InvalidUserDetailsException exception = assertThrows(InvalidUserDetailsException.class, () -> {	
+			userRegistrationJUnit.validateLastName(invalidLastNames);
+		});
+		System.out.println(exception);
 	}
 	
 	//Test methods for mobile
-	@Test
-	public void mobile_ifValid_shouldReturnValid() {
-		assertEquals("valid", userRegistrationJUnit.validateMobile("91 9865326598"));
-		assertEquals("valid", userRegistrationJUnit.validateMobile("975 5487215487"));
+	@ParameterizedTest
+	@ValueSource(strings = {"91 9865326598", "789 5487541254", "0000 0000000000"})
+	public void mobile_ifValid_shouldReturnValid(String validMobile) {
+		try {
+			assertEquals("valid", userRegistrationJUnit.validateMobile(validMobile));
+		}
+		catch(InvalidUserDetailsException exception) {
+			System.out.println(exception);
+		}
+	}
+
+	@ParameterizedTest
+	@ValueSource(strings = {"919865326598", "91 986532659898"})
+	public void mobile_ifInvalid_shouldReturnInvalid(String invalidMobile) {
+		InvalidUserDetailsException exception = assertThrows(InvalidUserDetailsException.class, () -> {	
+			userRegistrationJUnit.validateMobile(invalidMobile);
+		});
+		System.out.println(exception);
 	}
 	
-	@Test
-	public void mobile_ifInvalid_shouldReturnInvalid() {
-		assertEquals("invalid", userRegistrationJUnit.validateMobile("919865326598"));
-		assertEquals("invalid", userRegistrationJUnit.validateMobile("91 986532659898"));
-	}
 	
 	//Test methods for password
-	@Test
-	public void password_ifValid_shouldReturnValid() {
-		assertEquals("valid", userRegistrationJUnit.validatePassword("abcNn@1234"));
-		assertEquals("valid", userRegistrationJUnit.validatePassword("ABcn_xyz5"));
+	@ParameterizedTest
+	@ValueSource(strings = {"abcNn@1234", "ABcn_xyz5"})
+	public void password_ifValid_shouldReturnValid(String validPasswords) {
+		try {
+			assertEquals("valid", userRegistrationJUnit.validatePassword(validPasswords));
+		}
+		catch(InvalidUserDetailsException e) {
+			System.out.println(e);
+		}
+	}
+
+	@ParameterizedTest
+	@ValueSource(strings = {"Abc@12", "ab-abab254"})
+	public void password_ifInvalid_shouldReturnInvalid(String invalidPasswords) {
+		InvalidUserDetailsException exception = assertThrows(InvalidUserDetailsException.class, () -> {	
+			userRegistrationJUnit.validatePassword(invalidPasswords);
+		});
+		System.out.println(exception);
 	}
 	
-	@Test
-	public void password_ifInvalid_shouldReturnInvalid() {
-		assertEquals("invalid", userRegistrationJUnit.validatePassword("Abc@12"));
-		assertEquals("invalid", userRegistrationJUnit.validatePassword("ab-abab254"));
-	}
-	*/
-	
-	@Test
-	public void userEntry_ifValid_shouldReturnHappy() {
-		String firstName = "Rohan";
-		String lastName = "Patil";
-		String mobile = "91 9865326598";
-		String email = "abc-100@yahoo.com";
-		String password = "abcNn@1234";
-		assertEquals("happy", userRegistrationJUnit.validateUserEntry(firstName, lastName, mobile, email, password));
-	}
-	
-	@Test
-	public void userEntry_ifInvalid_shouldReturnSad() {
-		String firstName = "rohan";
-		String lastName = "patil";
-		String mobile = "919865326598";
-		String email = "abc-100@yahoo.com.1";
-		String password = "abcNn1234";
-		assertEquals("sad", userRegistrationJUnit.validateUserEntry(firstName, lastName, mobile, email, password));
-	}
-	
-	
+	//Test methods for email
 	@ParameterizedTest
 	@ValueSource(strings = {"abc@yahoo.com", "abc-100@yahoo.com", "abc.100@yahoo.com", "abc111@abc.com", "abc-100@abc.net", "abc.100@abc.com.au",
 			"abc@1.com", "abc@gmail.com.com", "abc+100@gmail.com"})
 	public void email_ifValid_shouldReturnValid(String validEmails) {
-		assertEquals("valid", userRegistrationJUnit.validateEmail(validEmails));
-		
+		try {
+			assertEquals("valid", userRegistrationJUnit.validateEmail(validEmails));
+		}
+		catch(InvalidUserDetailsException e) {
+			System.out.println(e);
+		}
 	}
+	
 	
 	@ParameterizedTest
 	@ValueSource(strings = {"abc", "abc@.com.my", "abc123@gmail.a", "abc123@.com", "abc123@.com.com", ".abc@abc.com", "abc()*.com", "abc@%*.com", 
 			"abc..2002@gmail.com", "abc.@gmail.com", "abc@abc@gmail.com", "abc@gmail.com.1a", "abc@gmail.com.aa.au"})
 	public void email_ifInvalid_shouldReturnInvalid(String invalidEmails) {
-		assertEquals("invalid", userRegistrationJUnit.validateEmail(invalidEmails));
-		
+		InvalidUserDetailsException exception = assertThrows(InvalidUserDetailsException.class, () -> {	
+			userRegistrationJUnit.validateEmail(invalidEmails);
+		});
+		System.out.println(exception);
 	}
 	
 	
