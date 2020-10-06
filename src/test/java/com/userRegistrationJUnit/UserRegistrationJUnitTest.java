@@ -20,7 +20,7 @@ class UserRegistrationJUnitTest {
 	@ValueSource(strings = {"Rohan", "Rohit", "Abhishek", "Rushikesh"})
 	public void firstName_ifValid_shouldReturnValid(String validFirstNames) {
 		try {
-			assertEquals("valid", userRegistrationJUnit.validateFirstName(validFirstNames));
+			assertEquals("valid", userRegistrationJUnit.validateFirstName.validate(validFirstNames));
 		}
 		catch(InvalidUserDetailsException exception) {
 			System.out.println(exception);
@@ -31,7 +31,7 @@ class UserRegistrationJUnitTest {
 	@ValueSource(strings = {"rohan", "R5ohit", "A@bhishek", "Rushi.kesh"})
 	public void firstName_ifInvalid_shouldReturnInvalid(String invalidFirstNames) {
 		InvalidUserDetailsException exception = assertThrows(InvalidUserDetailsException.class, () -> {	
-			userRegistrationJUnit.validateFirstName(invalidFirstNames);
+			userRegistrationJUnit.validateFirstName.validate(invalidFirstNames);
 		});
 		System.out.println(exception);
 	}
@@ -41,7 +41,7 @@ class UserRegistrationJUnitTest {
 	@ValueSource(strings = {"Patil", "Jadhav", "Sawant", "Deshmukh"})
 	public void lastName_ifValid_shouldReturnValid(String validLastNames) {
 		try {
-			assertEquals("valid", userRegistrationJUnit.validateLastName(validLastNames));
+			assertEquals("valid", userRegistrationJUnit.validateLastName.validate(validLastNames));
 		}
 		catch(InvalidUserDetailsException exception) {
 			System.out.println(exception);
@@ -52,7 +52,7 @@ class UserRegistrationJUnitTest {
 	@ValueSource(strings = {"Pa_til", "Ja1dhav", "Sawant*", "De"})
 	public void lastName_ifInvalid_shouldReturnInvalid(String invalidLastNames) {
 		InvalidUserDetailsException exception = assertThrows(InvalidUserDetailsException.class, () -> {	
-			userRegistrationJUnit.validateLastName(invalidLastNames);
+			userRegistrationJUnit.validateLastName.validate(invalidLastNames);
 		});
 		System.out.println(exception);
 	}
@@ -62,7 +62,7 @@ class UserRegistrationJUnitTest {
 	@ValueSource(strings = {"91 9865326598", "789 5487541254", "0000 0000000000"})
 	public void mobile_ifValid_shouldReturnValid(String validMobile) {
 		try {
-			assertEquals("valid", userRegistrationJUnit.validateMobile(validMobile));
+			assertEquals("valid", userRegistrationJUnit.validateMobile.validate(validMobile));
 		}
 		catch(InvalidUserDetailsException exception) {
 			System.out.println(exception);
@@ -73,7 +73,7 @@ class UserRegistrationJUnitTest {
 	@ValueSource(strings = {"919865326598", "91 986532659898"})
 	public void mobile_ifInvalid_shouldReturnInvalid(String invalidMobile) {
 		InvalidUserDetailsException exception = assertThrows(InvalidUserDetailsException.class, () -> {	
-			userRegistrationJUnit.validateMobile(invalidMobile);
+			userRegistrationJUnit.validateMobile.validate(invalidMobile);
 		});
 		System.out.println(exception);
 	}
@@ -84,7 +84,7 @@ class UserRegistrationJUnitTest {
 	@ValueSource(strings = {"abcNn@1234", "ABcn_xyz5"})
 	public void password_ifValid_shouldReturnValid(String validPasswords) {
 		try {
-			assertEquals("valid", userRegistrationJUnit.validatePassword(validPasswords));
+			assertEquals("valid", userRegistrationJUnit.validatePassword.validate(validPasswords));
 		}
 		catch(InvalidUserDetailsException e) {
 			System.out.println(e);
@@ -95,7 +95,7 @@ class UserRegistrationJUnitTest {
 	@ValueSource(strings = {"Abc@12", "ab-abab254"})
 	public void password_ifInvalid_shouldReturnInvalid(String invalidPasswords) {
 		InvalidUserDetailsException exception = assertThrows(InvalidUserDetailsException.class, () -> {	
-			userRegistrationJUnit.validatePassword(invalidPasswords);
+			userRegistrationJUnit.validatePassword.validate(invalidPasswords);
 		});
 		System.out.println(exception);
 	}
@@ -106,7 +106,7 @@ class UserRegistrationJUnitTest {
 			"abc@1.com", "abc@gmail.com.com", "abc+100@gmail.com"})
 	public void email_ifValid_shouldReturnValid(String validEmails) {
 		try {
-			assertEquals("valid", userRegistrationJUnit.validateEmail(validEmails));
+			assertEquals("valid", userRegistrationJUnit.validateEmail.validate(validEmails));
 		}
 		catch(InvalidUserDetailsException e) {
 			System.out.println(e);
@@ -119,10 +119,9 @@ class UserRegistrationJUnitTest {
 			"abc..2002@gmail.com", "abc.@gmail.com", "abc@abc@gmail.com", "abc@gmail.com.1a", "abc@gmail.com.aa.au"})
 	public void email_ifInvalid_shouldReturnInvalid(String invalidEmails) {
 		InvalidUserDetailsException exception = assertThrows(InvalidUserDetailsException.class, () -> {	
-			userRegistrationJUnit.validateEmail(invalidEmails);
+			userRegistrationJUnit.validateEmail.validate(invalidEmails);
 		});
 		System.out.println(exception);
 	}
-	
-	
+		
 }

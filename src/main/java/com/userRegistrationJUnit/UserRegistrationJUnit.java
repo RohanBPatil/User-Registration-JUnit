@@ -3,6 +3,11 @@ package com.userRegistrationJUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@FunctionalInterface
+interface IValidateFunction {
+	String validate(String check) throws InvalidUserDetailsException;
+}
+
 public class UserRegistrationJUnit {
 	
 	// GLOBAL CONSTANTS
@@ -11,58 +16,47 @@ public class UserRegistrationJUnit {
 	private static String EMAIL_REGEX = "^[a-zA-Z0-9_]+[-+.]?[A-Za-z0-9_]+@[A-Za-z0-9]+[.][a-z]{2,}[.]?([a-z]{2,})?$";
 	private static String PASSWORD_REGEX = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[$#@!%_&])[A-Za-z0-9$#@!%_&]{8,}$";
 	
-		
-	//Validating first name
-	public String validateFirstName(String firstName) throws InvalidUserDetailsException{
-		if(matchingWithPattern(firstName, NAME_REGEX))
-			return "valid";
-		else
-			throw new InvalidUserDetailsException("Invalid first name");
-	}
+	//validating first name
+	IValidateFunction validateFirstName = (String firstName) -> {
+	if(matchingWithPattern(firstName, NAME_REGEX)) 
+		return "valid"; 
+	else
+		throw new InvalidUserDetailsException("Invalid first name");
+	};
 	
 	//Validating last name
-	public String validateLastName(String lastName) throws InvalidUserDetailsException{
-		if(matchingWithPattern(lastName, NAME_REGEX))
-			return "valid";
-		else
-			throw new InvalidUserDetailsException("Invalid last name");
-	}
-	
-	
+	IValidateFunction validateLastName = (String lastName) -> {
+	if(matchingWithPattern(lastName, NAME_REGEX)) 
+		return "valid"; 
+	else
+		throw new InvalidUserDetailsException("Invalid first name");
+	};
+		
 	//validating email
-	public String validateEmail(String email) throws InvalidUserDetailsException{
+	IValidateFunction validateEmail = (String email) -> {
 		if(matchingWithPattern(email, EMAIL_REGEX))
 				return "valid";
 		else
 			throw new InvalidUserDetailsException("Invalid email");
-	}
-	
+	};
 	
 	//validating mobile
-	public String validateMobile(String mobile) throws InvalidUserDetailsException{
+	IValidateFunction validateMobile = (String mobile) -> {
 		if(matchingWithPattern(mobile, MOBILE_REGEX))
 			return "valid";
 		else
 			throw new InvalidUserDetailsException("Invalid mobile number");
-	}
+	};
 	
 	//validating password
-	public String validatePassword(String password) throws InvalidUserDetailsException{
+	IValidateFunction validatePassword = (String password) -> {
 		if(matchingWithPattern(password, PASSWORD_REGEX))
 			return "valid";
 		else
 			throw new InvalidUserDetailsException("Invalid password");
-	}
+	};
 	
-	
-	public String validateUserEntry(String firstName, String lastName, String mobile, String email, String password) {
-		if(matchingWithPattern(firstName, NAME_REGEX) && matchingWithPattern(lastName, NAME_REGEX) && matchingWithPattern(mobile, MOBILE_REGEX)
-				&& matchingWithPattern(email, EMAIL_REGEX) && matchingWithPattern(password, PASSWORD_REGEX)) {
-			return "happy";
-		}
-		return "sad";
-	}
-	
+	// checking for match
 	public boolean matchingWithPattern(String check, String regex) {
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(check);
@@ -71,4 +65,5 @@ public class UserRegistrationJUnit {
 		}
 		return false;
 	}
+	
 }
